@@ -1,0 +1,21 @@
+﻿  Carta.cpp
+  Enemigo.cpp
+C:\Users\Emi\Documents\GitHub\Trabajo-cartas\Enemigo.h(4,10): fatal error C1083: No se puede abrir el archivo incluir: 'SFML/Graphics.hpp': No such file or directory
+  Estadisticas.cpp
+  gamePlay.cpp
+C:\Users\Emi\Documents\GitHub\Trabajo-cartas\gamePlay.cpp(1,10): fatal error C1083: No se puede abrir el archivo incluir: 'SFML/Graphics.hpp': No such file or directory
+  interfaz_combate_.cpp
+C:\Users\Emi\Documents\GitHub\Trabajo-cartas\interfaz_combate.h(2,9): fatal error C1083: No se puede abrir el archivo incluir: 'SFML/Graphics.hpp': No such file or directory
+  LAB 2 Juego TP.cpp
+C:\Users\Emi\Documents\GitHub\Trabajo-cartas\Enemigo.h(4,10): fatal error C1083: No se puede abrir el archivo incluir: 'SFML/Graphics.hpp': No such file or directory
+  mapa.cpp
+C:\Users\Emi\Documents\GitHub\Trabajo-cartas\mapa.h(2,10): fatal error C1083: No se puede abrir el archivo incluir: 'SFML/Graphics.hpp': No such file or directory
+  Mazo.cpp
+C:\Users\Emi\Documents\GitHub\Trabajo-cartas\Enemigo.h(4,10): fatal error C1083: No se puede abrir el archivo incluir: 'SFML/Graphics.hpp': No such file or directory
+  menu.cpp
+C:\Users\Emi\Documents\GitHub\Trabajo-cartas\menu.h(2,9): fatal error C1083: No se puede abrir el archivo incluir: 'SFML/Graphics.hpp': No such file or directory
+  PersonajePrincipal.cpp
+C:\Users\Emi\Documents\GitHub\Trabajo-cartas\PersonajePrincipal.h(3,10): fatal error C1083: No se puede abrir el archivo incluir: 'SFML/Graphics.hpp': No such file or directory
+  turno.cpp
+C:\Users\Emi\Documents\GitHub\Trabajo-cartas\Enemigo.h(4,10): fatal error C1083: No se puede abrir el archivo incluir: 'SFML/Graphics.hpp': No such file or directory
+  Generando código...

@@ -15,8 +15,8 @@ private:
 	
 public:
 	gamePlay();
-	void collisionObjetos();
-	void collisionMapa();
+	void collisionObjetos(PersonajePrincipal& p, Enemigo& e, sf::RenderWindow* window);
+	void collisionMapa(PersonajePrincipal& p);
 	void mostrarVentana(sf::RenderWindow* window, Enemigo& e, PersonajePrincipal& p);
 };
 

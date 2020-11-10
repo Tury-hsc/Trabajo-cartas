@@ -45,8 +45,6 @@ sf::RectangleShape PersonajePrincipal::setCollisionPj()
 	return _collisionPj;
 }
 
-
-
 void PersonajePrincipal::moverPj(float frame, float x, float y) {
 	_caminata.setVolume(100);
 	sf::Vector2u tamTextura = sf::Vector2u(_texturePlayer.getSize());
