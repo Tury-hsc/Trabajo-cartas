@@ -12,9 +12,9 @@ int Enemigo::danio_a_personaje()
 {	
 	int x;
 	srand(time(NULL));
-	x=this->get_atk();
+	x=20/*this->get_atk()*/;
 	x=rand()%x+1;
-	return x;
+	return x*-1;
 }
 void Enemigo::setTextureDragon()
 {
@@ -49,5 +49,5 @@ void Enemigo::setDragon()
 	tamTextura.x /= 3;
 	tamTextura.y /= 4;
 	_spriteDragon.setTextureRect(sf::IntRect(tamTextura.x * 0, tamTextura.y * 0, tamTextura.x, tamTextura.y));
-	_spriteDragon.setPosition(sf::Vector2f(50.0f, 50.0f));
+	_spriteDragon.setPosition(sf::Vector2f(20.0f, 20.0f));
 }

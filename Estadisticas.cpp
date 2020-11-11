@@ -8,8 +8,9 @@ char* Estadisticas::get_nombre()
 }
 void Estadisticas::modificar_vida(int x)
 {
-	_vida += x;
-	
+	if (get_vida()+ x <=50) {
+		_vida += x;
+	}	
 }
 bool Estadisticas::get_pierdeturno()
 {

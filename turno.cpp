@@ -17,9 +17,7 @@ int turno::get_turno()
 
 void turno::elegir_carta(int x)
 {
-	
-	_elecion=x;
-
+	_elecion = x;
 }
 
 int turno::get_elecion()
@@ -29,65 +27,39 @@ int turno::get_elecion()
 
 
 
-void turno::efecto_de_carta(Enemigo &e, PersonajePrincipal &p ,Mazo &m)
+void turno::efecto_de_carta(Enemigo& e, PersonajePrincipal& p, Mazo& m)
 {
 	Carta c;
 	cout << "peru" << c.get_valor() << "peru";
 	cout << "peru" << c.get_nombre() << "peru";
 	cout << "e:" << e.get_vida() << endl;
 	c = m.get_mano(get_elecion());
-	if (c.get_afectaPersonaje()==true)
-	{	
+	if (c.get_afectaPersonaje() == true)
+	{
 		p.modificar_vida(c.get_valor());
 		p.set_pierdeturno(c.get_stun());
 	}
 	else
-	{	
-		cout << "peru" << c.get_valor()<<"peru" ;
+	{
+		cout << "peru" << c.get_valor() << "peru";
 		e.modificar_vida(c.get_valor());
 		e.set_pierdeturno(c.get_stun());
 	}
 	cout << "e:" << e.get_vida() << endl;
 	cout << "p:" << p.get_vida() << endl;
-
-
-
-
 }
 
-void turno::combate(Enemigo &e, PersonajePrincipal &p, Mazo &m)
-{	
-	
-	if (p.get_iniciativa()>e.get_iniciativa())
-	{
-		if (!p.get_pierdeturno())
-		{
-			
-			efecto_de_carta(e, p,m);
-			p.modificar_vida(e.danio_a_personaje());
-		} 
-		else
-		{
-			p.set_pierdeturno(false);
-			p.modificar_vida(e.danio_a_personaje());
-		}
-
+void turno::combate(Enemigo& e, PersonajePrincipal& p, Mazo& m)
+{
+	if (e.get_pierdeturno()) {
+		e.set_pierdeturno(false);
 	}
 	else
 	{
-		if (!e.get_pierdeturno())
-		{
-			
-			p.modificar_vida(e.danio_a_personaje());
-			efecto_de_carta(e, p,m);
-		}
-		else
-		{	
-			e.set_pierdeturno(false);
-			efecto_de_carta(e, p,m);
-		}
+		
+		p.modificar_vida(e.danio_a_personaje());
 	}
-	
+
 }
 
 void turno::combate_mientras(Enemigo& e, PersonajePrincipal& p, Mazo& m)
@@ -99,10 +71,10 @@ void turno::combate_mientras(Enemigo& e, PersonajePrincipal& p, Mazo& m)
 
 		set_turno();
 		combate(e, p, m);
-		cout <<"e:"<< e.get_vida()<<endl;
-		cout <<"p:"<< p.get_vida()<< endl;
+		cout << "e:" << e.get_vida() << endl;
+		cout << "p:" << p.get_vida() << endl;
 
-	} while (!((p.get_vida()>0 && e.get_vida()<=0)||(p.get_vida() <= 0 && e.get_vida() > 0)));
+	} while (!((p.get_vida() > 0 && e.get_vida() <= 0) || (p.get_vida() <= 0 && e.get_vida() > 0)));
 
 
 }

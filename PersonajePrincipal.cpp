@@ -13,9 +13,10 @@ PersonajePrincipal::PersonajePrincipal(int vida, int iniciativa, int def, int at
 
 void PersonajePrincipal::setTexturePlayer()
 {
-	_texturePlayer.loadFromFile("Graphics\\orco.png");
+	_texturePlayer.loadFromFile("Graphics\\kloster.png");
 	_spritePlayer.setTexture(_texturePlayer);
-	_spritePlayer.setTextureRect(sf::IntRect(0, 0, 57, 99));
+	_spritePlayer.setTextureRect(sf::IntRect(0, 0, 27, 48));
+	_spritePlayer.setScale(1.3f, 1.3f);
 	if (!_buffer.loadFromFile("musica\\caminata.wav")) {
 		std::cout << "NO SE CARGO EL EFECTO" << std::endl;
 	}

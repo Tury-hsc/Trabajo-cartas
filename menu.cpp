@@ -6,8 +6,7 @@
 #include "mazo.h"
 
 void menu::eventos(sf::Vector2f posicion, Enemigo& e, PersonajePrincipal& p) {
-	while (window->pollEvent(*evento)) {
-
+	while (window->pollEvent(*evento)){
 		switch (evento->type) {
 		case sf::Event::Closed:
 			window->close();
@@ -38,7 +37,6 @@ void menu::eventos(sf::Vector2f posicion, Enemigo& e, PersonajePrincipal& p) {
 			}
 			break;
 		}
-
 	}
 }
 

@@ -30,9 +30,9 @@ private:
 	
 public:
 
-	void setTexture_combate();
+	void setTexture_combate(Enemigo& e/*, PersonajePrincipal& k*/);
 	void setSprite_combate();
-	void setSprite_pj();
+	void setSprite_pj(Enemigo e);
 	void iniciar_pelea(sf::RenderWindow* window,Enemigo& e, PersonajePrincipal& p);
 	void setFont();
 	sf::Text setTexto(sf::String texto, unsigned int tamaño_texto, sf::Vector2f ubicacion, float grueso);

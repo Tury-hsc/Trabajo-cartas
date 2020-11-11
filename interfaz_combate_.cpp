@@ -8,9 +8,6 @@ void combate::procesar_eventos(sf::RenderWindow * window, sf::Vector2f posicion,
 	
 	cout << e.get_vida();
 	while (window->pollEvent(evento)) {
-		
-
-
 		if (atacar == false) {
 			switch (evento.type) {
 			case sf::Event::Closed:
@@ -42,12 +39,6 @@ void combate::procesar_eventos(sf::RenderWindow * window, sf::Vector2f posicion,
 			}
 		}
 		else {
-			
-			
-
-			
-
-
 			switch (evento.type) {
 			case sf::Event::Closed:
 				window->close();
@@ -117,12 +108,10 @@ void combate::procesar_eventos(sf::RenderWindow * window, sf::Vector2f posicion,
 					cout << "PUTO";
 					cout << e.get_vida();
 					t.efecto_de_carta(e, p,m); 
+					t.combate(e, p, m);
 					vida_enemigo = e.get_vida();
 					vida_personaje = p.get_vida();
 					cout << "PUTO";
-
-					
-
 				}
 				break;
 			}
@@ -149,7 +138,7 @@ void combate::definir_vida() {
 	vida_enemigo->setFillColor(sf::Color::Green);*/
 }
 
-void combate::setTexture_combate() {
+void combate::setTexture_combate(Enemigo& e/*, PersonajePrincipal& k*/) {
 
 	textura_combate = new sf::Texture();
 	textura_combate->loadFromFile("Graphics\\combate.png");
@@ -163,11 +152,13 @@ void combate::setTexture_combate() {
 	textura_personaje = new sf::Texture();
 	textura_personaje->loadFromFile("Graphics\\snop.png");
 
-	textura_enemigo = new sf::Texture();
-	textura_enemigo->loadFromFile("Graphics\\mj.png");
+	//textura_enemigo = new sf::Texture();
+	//textura_enemigo->loadFromFile("Graphics\\mj.png");
+	e.setDragon();
+	e.getDragon();
 
 	textura_fondo = new sf::Texture();
-	textura_fondo->loadFromFile("Graphics\\prueba.jpg");
+	textura_fondo->loadFromFile("Graphics\\mapa_combate.png");
 
 	textura_boton = new sf::Texture();
 	textura_boton->loadFromFile("Graphics\\boton.png");
@@ -200,13 +191,13 @@ void combate::setSprite_combate() {
 	sprite_boton->setScale(0.5f, 0.5f);
 }
 
-void combate::setSprite_pj() {
+void combate::setSprite_pj(Enemigo e) {
 
 	sprite_personaje = new sf::Sprite(*textura_personaje);
 	sprite_personaje->setPosition(120, 329);
 
-	sprite_enemigo = new sf::Sprite(*textura_enemigo);
-	sprite_enemigo->setPosition(760, 100);
+	sprite_enemigo = new sf::Sprite(e.getDragon());
+	sprite_enemigo->setPosition(300, 20);
 	sprite_enemigo->setColor(sf::Color::White);
 
 }
@@ -232,9 +223,9 @@ void combate::iniciar_pelea(sf::RenderWindow* window, Enemigo& e, PersonajePrinc
 	vida_enemigo = e.get_vida();
 
 	setFont();
-	setTexture_combate();
+	setTexture_combate(e);
 	setSprite_combate();
-	setSprite_pj();
+	setSprite_pj(e);
 	definir_vida();
 
 	sprite_fondo->setScale((float)window->getSize().x / sprite_fondo->getTexture()->getSize().x, (float)window->getSize().y / sprite_fondo->getTexture()->getSize().y);

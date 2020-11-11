@@ -70,10 +70,6 @@ void gamePlay::collisionMapa(PersonajePrincipal& p)
 
 void gamePlay::mostrarVentana(sf::RenderWindow* window, Enemigo& e, PersonajePrincipal& p)
 {
-	
-	window->setFramerateLimit(60);
-
-
 	sf::Music _musicaFondo;
 	
 	if (!_musicaFondo.openFromFile("musica\\pelea3.wav")) {
@@ -93,13 +89,7 @@ void gamePlay::mostrarVentana(sf::RenderWindow* window, Enemigo& e, PersonajePri
 
 	while (window->isOpen())
 	{
-		sf::Event event;		
-		
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
-			window->clear();
-			combate pelea;
-			pelea.iniciar_pelea(window, e, p);
-		}
+		sf::Event event;
 		while (window->pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed)

@@ -34,8 +34,9 @@ int main()
 int main()
 {
 	
-
-
+	//Carta carta;
+	//carta.crear_carta();
+	
 	Enemigo e(50,10,1,1);
 	PersonajePrincipal p(50,11,1,1);
 	menu i;
