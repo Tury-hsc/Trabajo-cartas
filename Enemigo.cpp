@@ -32,7 +32,7 @@ sf::RectangleShape Enemigo::setCollisionDragon()
 {
 	sf::RectangleShape _collisionDragon(sf::Vector2f(170, 50));
 	_collisionDragon.setOrigin(sf::Vector2f(170 / 2, 50 / 2));
-	_collisionDragon.setFillColor(sf::Color(300, 300, 300));
+	_collisionDragon.setFillColor(sf::Color::Transparent);
 	_collisionDragon.setPosition(280.0f, 380.0f);
 	return _collisionDragon;
 }

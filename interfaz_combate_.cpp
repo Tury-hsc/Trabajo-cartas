@@ -101,17 +101,18 @@ void combate::procesar_eventos(sf::RenderWindow * window, sf::Vector2f posicion,
 						
 						break;
 					}
-					cout << "PUTO";
-					atacar = false; cout << "PUTO";
+					//cout << "";
+					atacar = false;/// cout << "";
 					sprite_boton->setPosition(81, 560);
 					sprite_boton->setScale(0.5f, 0.5f);
-					cout << "PUTO";
+					//cout << "";
 					cout << e.get_vida();
 					t.efecto_de_carta(e, p,m); 
 					t.combate(e, p, m);
 					vida_enemigo = e.get_vida();
 					vida_personaje = p.get_vida();
-					cout << "PUTO";
+					m.cambiar(t.get_elecion());
+
 				}
 				break;
 			}
@@ -150,7 +151,7 @@ void combate::setTexture_combate(Enemigo& e/*, PersonajePrincipal& k*/) {
 	textura_opcion->loadFromFile("Graphics\\opcion.png");
 
 	textura_personaje = new sf::Texture();
-	textura_personaje->loadFromFile("Graphics\\snop.png");
+	textura_personaje->loadFromFile("Graphics\\closter.png");
 
 	//textura_enemigo = new sf::Texture();
 	//textura_enemigo->loadFromFile("Graphics\\mj.png");
@@ -219,8 +220,8 @@ sf::Text combate::setTexto(sf::String texto, unsigned int tamaño_texto, sf::Vect
 }
 
 void combate::iniciar_pelea(sf::RenderWindow* window, Enemigo& e, PersonajePrincipal& p) {
-	vida_personaje = p.get_vida();
-	vida_enemigo = e.get_vida();
+	vida_personaje = 50;
+	vida_enemigo = 50;
 
 	setFont();
 	setTexture_combate(e);
@@ -283,6 +284,7 @@ void combate::iniciar_pelea(sf::RenderWindow* window, Enemigo& e, PersonajePrinc
 
 
 	Mazo m;
+	
 	txt_carta1 = new sf::Text();
 	txt_carta2 = new sf::Text();
 	txt_carta3 = new sf::Text();
@@ -292,10 +294,9 @@ void combate::iniciar_pelea(sf::RenderWindow* window, Enemigo& e, PersonajePrinc
 	txt_carta2->setFont(*fuente_combate);
 	txt_carta3->setFont(*fuente_combate);
 	txt_carta4->setFont(*fuente_combate);
-
+	
 	m.cargar_mano();
 	
-
 	txt_carta1->setString(m.nombre_carta(m, 0));
 	txt_carta2->setString(m.nombre_carta(m, 1));
 	txt_carta3->setString(m.nombre_carta(m, 2));
@@ -309,7 +310,7 @@ void combate::iniciar_pelea(sf::RenderWindow* window, Enemigo& e, PersonajePrinc
 
 
 
-
+	m.set_mano();
 
 	while (p.get_vida() > 0 && e.get_vida()>0 && huir == false && window->isOpen()) {
 	
@@ -330,7 +331,11 @@ void combate::iniciar_pelea(sf::RenderWindow* window, Enemigo& e, PersonajePrinc
 		procesar_eventos(window, posicion,t,e,p,m);
 
 		if (atacar == false) {
-			m.set_mano();
+			
+			  
+			
+
+
 			txt_carta1->setString(m.nombre_carta(m, 0));
 			txt_carta2->setString(m.nombre_carta(m, 1));
 			txt_carta3->setString(m.nombre_carta(m, 2));

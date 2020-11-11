@@ -41,7 +41,7 @@ sf::RectangleShape PersonajePrincipal::setCollisionPj()
 {
 	_collisionPj.setSize({ 50, 25 });
 	_collisionPj.setOrigin(sf::Vector2f(50 / 2, 0));
-	_collisionPj.setFillColor(sf::Color(300, 300, 300));
+	_collisionPj.setFillColor(sf::Color::Transparent);
 	_collisionPj.setPosition(_spritePlayer.getPosition());
 	return _collisionPj;
 }

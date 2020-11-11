@@ -66,8 +66,9 @@ void gamePlay::collisionMapa(PersonajePrincipal& p)
 	if (p.getPosition().y <= 20) {
 		p.setPlayer(p.getPosition().x, p.getPosition().y + 4.0f);
 	}
+	
+	
 }
-
 void gamePlay::mostrarVentana(sf::RenderWindow* window, Enemigo& e, PersonajePrincipal& p)
 {
 	sf::Music _musicaFondo;

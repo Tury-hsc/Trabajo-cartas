@@ -24,6 +24,7 @@ public:
 	void set_mano();
 	char * nombre_carta(Mazo &a,int x);
 	Carta get_mano(int x);
+	void cambiar(int x);
 };
 
 

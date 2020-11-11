@@ -72,9 +72,9 @@ void Mazo::set_mano()
     for (auto &var : _mano)
     {   
         x = a.Mano.size();
-        cout << x;
+        //cout << x;
         x = rand() % x;
-        cout << x;
+        //cout << x;
         var = a.Mano[x];
 
     }
@@ -96,5 +96,14 @@ char * Mazo::nombre_carta(Mazo &a,int x)
 Carta Mazo::get_mano(int x)
 {
     return _mano[x];
+}
+
+void Mazo::cambiar(int x)
+{
+    int c=4;
+    srand(time(NULL));
+    c  = rand() % c+1;
+    _mano[x] = Mano[c];
+
 }
 
