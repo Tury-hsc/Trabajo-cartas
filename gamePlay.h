@@ -3,6 +3,7 @@
 #include "PersonajePrincipal.h"
 #include "mapa.h"
 #include "Mazo.h"
+#include "dungeon.h"
 
 class gamePlay
 {
@@ -18,5 +19,7 @@ public:
 	void collisionObjetos(PersonajePrincipal& p, Enemigo& e, sf::RenderWindow* window);
 	void collisionMapa(PersonajePrincipal& p);
 	void mostrarVentana(sf::RenderWindow* window, Enemigo& e, PersonajePrincipal& p);
+	void collisionDg(dungeon d, PersonajePrincipal& p, sf::RenderWindow* window, Enemigo& e);
+	void collisionRio(PersonajePrincipal& p);
 };
 

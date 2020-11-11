@@ -158,6 +158,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Carta.cpp" />
+    <ClCompile Include="dungeon.cpp" />
     <ClCompile Include="Enemigo.cpp" />
     <ClCompile Include="Estadisticas.cpp" />
     <ClCompile Include="gamePlay.cpp" />
@@ -170,6 +171,7 @@
     <ClCompile Include="turno.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="dungeon.h" />
     <ClInclude Include="Esenario.h" />
     <ClInclude Include="Carta.h" />
     <ClInclude Include="Enemigo.h" />

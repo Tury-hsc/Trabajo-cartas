@@ -7,6 +7,9 @@ Enemigo::Enemigo(int vida, int iniciativa, int def, int atk)
 	set_iniciativa(iniciativa);
 	set_def(def);
 	set_atk(atk);
+	setTextureDragon();
+	setDragon();
+	setScaleDragon();
 }
 int Enemigo::danio_a_personaje()
 {	
