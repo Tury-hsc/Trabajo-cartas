@@ -4,7 +4,6 @@
 
 void combate::procesar_eventos(sf::RenderWindow * window, sf::Vector2f posicion,turno t, Enemigo& e, PersonajePrincipal& p,Mazo &m) {
 	sf::Event evento;
-	sf::Text* txt_carta1, * txt_carta2, * txt_carta3, * txt_carta4;
 	
 	cout << e.get_vida();
 	while (window->pollEvent(evento)) {
@@ -230,7 +229,7 @@ void combate::iniciar_pelea(sf::RenderWindow* window, Enemigo& e, PersonajePrinc
 	definir_vida();
 
 	sprite_fondo->setScale((float)window->getSize().x / sprite_fondo->getTexture()->getSize().x, (float)window->getSize().y / sprite_fondo->getTexture()->getSize().y);
-	sf::Text* txt_ataque, * txt_huir, * txt_carta1, * txt_carta2, * txt_carta3, * txt_carta4;
+	sf::Text* txt_ataque, * txt_huir, * txt_carta1, * txt_carta2, * txt_carta3, * txt_carta4, * txt_desc;
 	sf::Text* txt_vida_p, * txt_vida_e, * txt_vida_p_total, * txt_vida_e_total, * barra, * barra2;
 	txt_ataque = new sf::Text();
 	txt_huir = new sf::Text();
@@ -238,6 +237,7 @@ void combate::iniciar_pelea(sf::RenderWindow* window, Enemigo& e, PersonajePrinc
 	txt_carta2 = new sf::Text();
 	txt_carta3 = new sf::Text();
 	txt_carta4 = new sf::Text();
+	txt_desc = new sf::Text();
 	txt_vida_p = new sf::Text();
 	txt_vida_p->setFont(*fuente_combate);
 	txt_vida_e = new sf::Text();
@@ -257,6 +257,7 @@ void combate::iniciar_pelea(sf::RenderWindow* window, Enemigo& e, PersonajePrinc
 	*txt_carta2 = setTexto("Carta 2", 35, { 132, 585 }, 5);
 	*txt_carta3 = setTexto("Carta 3", 35, { 132, 620 }, 5);
 	*txt_carta4 = setTexto("Carta 4", 35, { 132, 660 }, 5);
+	*txt_desc = setTexto("¿Que deseas hacer?", 45, { 560, 600 }, 5);
 	*barra = setTexto("/", 16, { 326, 336 }, 2);
 	*barra2 = setTexto("/", 16, { 690, 97 }, 2);
 
@@ -282,8 +283,9 @@ void combate::iniciar_pelea(sf::RenderWindow* window, Enemigo& e, PersonajePrinc
 	contorno_vida_enemigo.setOutlineThickness(3);
 	contorno_vida_enemigo.setOutlineColor(sf::Color::Black);
 
+
 	Mazo m;
-	
+
 	txt_carta1 = new sf::Text();
 	txt_carta2 = new sf::Text();
 	txt_carta3 = new sf::Text();
@@ -293,9 +295,9 @@ void combate::iniciar_pelea(sf::RenderWindow* window, Enemigo& e, PersonajePrinc
 	txt_carta2->setFont(*fuente_combate);
 	txt_carta3->setFont(*fuente_combate);
 	txt_carta4->setFont(*fuente_combate);
-	
+
 	m.cargar_mano();
-	
+
 	txt_carta1->setString(m.nombre_carta(m, 0));
 	txt_carta2->setString(m.nombre_carta(m, 1));
 	txt_carta3->setString(m.nombre_carta(m, 2));
@@ -306,9 +308,20 @@ void combate::iniciar_pelea(sf::RenderWindow* window, Enemigo& e, PersonajePrinc
 	txt_carta3->setPosition(132, 620);
 	txt_carta4->setPosition(132, 660);
 
+
+	sf::Text* txt_desc_carta1, * danio, * HP, * danio_dragon;
+	Carta cart;
+
+	txt_desc_carta1 = new sf::Text();
+	danio = new sf::Text();
+	danio->setFont(*fuente_combate);
+	danio_dragon = new sf::Text();
+	danio_dragon->setFont(*fuente_combate);
+	HP = new sf::Text();
+
 	m.set_mano();
 
-	while (p.get_vida() > 0 && e.get_vida()>0 && huir == false && window->isOpen()){	
+	while (p.get_vida() > 0 && e.get_vida() > 0 && huir == false && window->isOpen()) {
 		//window->clear();
 		sf::Vector2f posicion = sprite_boton->getPosition();
 		cout << e.get_vida();
@@ -316,39 +329,135 @@ void combate::iniciar_pelea(sf::RenderWindow* window, Enemigo& e, PersonajePrinc
 		window->draw(*sprite_personaje);
 		window->draw(*sprite_enemigo);
 		window->draw(*sprite_opcion);
+		window->draw(*sprite_combate);
+		window->draw(*txt_desc_carta1);
 		window->draw(*txt_carta1);
 		window->draw(*txt_carta2);
 		window->draw(*txt_carta3);
 		window->draw(*txt_carta4);
 
-		procesar_eventos(window, posicion,t,e,p,m);
+
+
+		procesar_eventos(window, posicion, t, e, p, m);
+
 
 		if (atacar == false) {
+
+
+
+
 
 			txt_carta1->setString(m.nombre_carta(m, 0));
 			txt_carta2->setString(m.nombre_carta(m, 1));
 			txt_carta3->setString(m.nombre_carta(m, 2));
 			txt_carta4->setString(m.nombre_carta(m, 3));
-
+			danio->setString(" ");
+			HP->setString(" ");
 			window->clear();
 			window->draw(*sprite_fondo);
 			window->draw(*sprite_personaje);
 			window->draw(*sprite_enemigo);
 			window->draw(*sprite_opcion);
+			window->draw(*sprite_combate);
 			window->draw(*txt_ataque);
+			window->draw(*txt_desc);
 			window->draw(*txt_huir);
 			txt_vida_p->setString(to_string(vida_personaje));
 			txt_vida_e->setString(to_string(vida_enemigo));
-			
+
+
 		}
 		else {
+			switch ((int)posicion.y) {
+			case 555:
+				cart = m.get_mano(0);
+				danio->setString(" ");
+				HP->setString(" ");
+				if (cart.get_stun() == true) {
+					*txt_desc_carta1 = setTexto("Esta carta aturde al enemigo", 45, { 540,600 }, 5);
+				}
+				else if (cart.get_afectaPersonaje() == true) {
+					*txt_desc_carta1 = setTexto("Esta carta cura al personaje", 45, { 540,600 }, 5);
+				}
+				else {
+					*txt_desc_carta1 = setTexto("Esta carta inflinge daño al enemigo de", 40, { 463,600 }, 5);
+					*HP = setTexto("HP", 37, { 879,600 }, 5);
+					danio->setString(to_string(-cart.get_valor()));
+					danio->setPosition({ 853, 600 });
+					danio->setCharacterSize(40);
+					danio->setOutlineThickness(5);
+					danio->setOutlineColor(sf::Color::Black);
+				}
+				break;
+			case 590:
+				cart = m.get_mano(1);
+				danio->setString(" ");
+				HP->setString(" ");
+				if (cart.get_stun() == true) {
+					*txt_desc_carta1 = setTexto("Esta carta aturde al enemigo", 45, { 540,600 }, 5);
+				}
+				else if (cart.get_afectaPersonaje() == true) {
+					*txt_desc_carta1 = setTexto("Esta carta cura al personaje", 45, { 540,600 }, 5);
+				}
+				else {
+					*txt_desc_carta1 = setTexto("Esta carta inflinge daño al enemigo de", 40, { 463,600 }, 5);
+					*HP = setTexto("HP", 37, { 879,600 }, 5);
+					danio->setString(to_string(-cart.get_valor()));
+					danio->setPosition({ 853, 600 });
+					danio->setCharacterSize(40);
+					danio->setOutlineThickness(5);
+					danio->setOutlineColor(sf::Color::Black);
+				}
+				break;
+			case 625:
+				cart = m.get_mano(2);
+				danio->setString(" ");
+				HP->setString(" ");
+				if (cart.get_stun() == true) {
+					*txt_desc_carta1 = setTexto("Esta carta aturde al enemigo", 45, { 540,600 }, 5);
+				}
+				else if (cart.get_afectaPersonaje() == true) {
+					*txt_desc_carta1 = setTexto("Esta carta cura al personaje", 45, { 540,600 }, 5);
+				}
+				else {
+					*txt_desc_carta1 = setTexto("Esta carta inflinge daño al enemigo de", 40, { 463,600 }, 5);
+					*HP = setTexto("HP", 37, { 879,600 }, 5);
+					danio->setString(to_string(-cart.get_valor()));
+					danio->setPosition({ 853, 600 });
+					danio->setCharacterSize(40);
+					danio->setOutlineThickness(5);
+					danio->setOutlineColor(sf::Color::Black);
+				}
+				break;
+			case 664:
+				cart = m.get_mano(3);
+				danio->setString(" ");
+				HP->setString(" ");
+				if (cart.get_stun() == true) {
+					*txt_desc_carta1 = setTexto("Esta carta aturde al enemigo", 45, { 540,600 }, 5);
+				}
+				else if (cart.get_afectaPersonaje() == true) {
+					*txt_desc_carta1 = setTexto("Esta carta cura al personaje", 45, { 540,600 }, 5);
+				}
+				else {
+					*txt_desc_carta1 = setTexto("Esta carta inflinge daño al enemigo de", 40, { 463,600 }, 5);
+					*HP = setTexto("HP", 37, { 879,600 }, 5);
+					danio->setString(to_string(-cart.get_valor()));
+					danio->setPosition({ 853, 600 });
+					danio->setCharacterSize(40);
+					danio->setOutlineThickness(5);
+					danio->setOutlineColor(sf::Color::Black);
+				}
+				break;
+			}
+			window->draw(*danio);
+			window->draw(*HP);
 			/*window->draw(*txt_carta1);
 			window->draw(*txt_carta2);
 			window->draw(*txt_carta3);
 			window->draw(*txt_carta4);*/
 		}
 		window->draw(*sprite_boton);
-		window->draw(*sprite_combate);
 		window->draw(*sprite_vida);
 		window->draw(*sprite_vida_enemigo);
 		window->draw(*barra);
