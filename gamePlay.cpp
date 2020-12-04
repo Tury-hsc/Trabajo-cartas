@@ -10,11 +10,9 @@
 
 //p(40,20,20,20) , e (30,10,20,20)
 gamePlay::gamePlay() {
-
 	frame = 0;
 	x = 0;
 	y = 0;
-
 }
 
 void gamePlay::collisionObjetos(PersonajePrincipal& p, Enemigo& e, sf::RenderWindow* window)
@@ -69,6 +67,7 @@ void gamePlay::collisionMapa(PersonajePrincipal& p)
 	
 	
 }
+
 void gamePlay::mostrarVentana(sf::RenderWindow* window, Enemigo& e, PersonajePrincipal& p)
 {
 	sf::Music _musicaFondo;
@@ -94,7 +93,7 @@ void gamePlay::mostrarVentana(sf::RenderWindow* window, Enemigo& e, PersonajePri
 			if (event.type == sf::Event::KeyPressed) {
 				
 			}
-		}		
+		}
 		
 		collisionMapa(p);		
 		collisionRio(p);

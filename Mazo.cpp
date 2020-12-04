@@ -46,8 +46,7 @@ int Mazo::cantida_de_cartas()
 
     while (fread(&a,sizeof(Carta),1,p)==1)
     {
-        x++;
-      
+        x++;      
     }
 
     cout << x;
@@ -72,15 +71,11 @@ void Mazo::set_mano()
     for (auto &var : _mano)
     {   
         x = a.Mano.size();
-        //cout << x;
+        cout << x;
         x = rand() % x;
-        //cout << x;
+        cout << x;
         var = a.Mano[x];
-
     }
-   
-   
-
 }
 
 char * Mazo::nombre_carta(Mazo &a,int x)

@@ -1,6 +1,7 @@
 #include "Enemigo.h"
 #include <time.h>
 #include <iostream>
+
 Enemigo::Enemigo(int vida, int iniciativa, int def, int atk)
 {
 	set_vida(vida);
@@ -11,6 +12,7 @@ Enemigo::Enemigo(int vida, int iniciativa, int def, int atk)
 	setDragon();
 	setScaleDragon();
 }
+
 int Enemigo::danio_a_personaje()
 {	
 	int x;
@@ -19,6 +21,7 @@ int Enemigo::danio_a_personaje()
 	x=rand()%x+1;
 	return x*-1;
 }
+
 void Enemigo::setTextureDragon()
 {
 	_textureDragon.loadFromFile("Graphics\\dragon.png");
@@ -39,7 +42,6 @@ sf::RectangleShape Enemigo::setCollisionDragon()
 	_collisionDragon.setPosition(280.0f, 380.0f);
 	return _collisionDragon;
 }
-
 
 sf::Sprite Enemigo::getDragon()
 {

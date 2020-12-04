@@ -1,2 +1,12 @@
-﻿  dungeon.cpp
+﻿  aniomaciones.cpp
+C:\Users\Emi\Documents\GitHub\Trabajo-cartas\aniomaciones.cpp(20,42): warning C4244: 'argumento': conversión de 'T' a 'float'; posible pérdida de datos
+          with
+          [
+              T=unsigned int
+          ]
+C:\Users\Emi\Documents\GitHub\Trabajo-cartas\aniomaciones.cpp(20,31): warning C4244: 'argumento': conversión de 'T' a 'float'; posible pérdida de datos
+          with
+          [
+              T=unsigned int
+          ]
   LAB 2 Juego TP.vcxproj -> C:\Users\Emi\Documents\GitHub\Trabajo-cartas\x64\Debug\LAB 2 Juego TP.exe

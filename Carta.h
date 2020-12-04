@@ -1,12 +1,15 @@
 #pragma once
 #include <iostream>
+#include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 class Carta
 {	
 private:
 	char _nombre[20];
 	int _valor;
 	bool _afectaPersonaje,_stun;
-
+	sf::Texture _textureDanio;
+	sf::Sprite _spriteDanio;
 	
 public:
 	void set_nombre(char* c);
@@ -17,8 +20,7 @@ public:
 	int  get_valor();
 	char * get_nombre();
 	void crear_carta();
-	bool get_stun();
-
-
+	bool get_stun();	
+	
 };
 

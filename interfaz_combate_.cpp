@@ -282,7 +282,6 @@ void combate::iniciar_pelea(sf::RenderWindow* window, Enemigo& e, PersonajePrinc
 	contorno_vida_enemigo.setOutlineThickness(3);
 	contorno_vida_enemigo.setOutlineColor(sf::Color::Black);
 
-
 	Mazo m;
 	
 	txt_carta1 = new sf::Text();
@@ -307,13 +306,9 @@ void combate::iniciar_pelea(sf::RenderWindow* window, Enemigo& e, PersonajePrinc
 	txt_carta3->setPosition(132, 620);
 	txt_carta4->setPosition(132, 660);
 
-
-
-
 	m.set_mano();
 
-	while (p.get_vida() > 0 && e.get_vida()>0 && huir == false && window->isOpen()) {
-	
+	while (p.get_vida() > 0 && e.get_vida()>0 && huir == false && window->isOpen()){	
 		//window->clear();
 		sf::Vector2f posicion = sprite_boton->getPosition();
 		cout << e.get_vida();
@@ -326,15 +321,9 @@ void combate::iniciar_pelea(sf::RenderWindow* window, Enemigo& e, PersonajePrinc
 		window->draw(*txt_carta3);
 		window->draw(*txt_carta4);
 
-
-
 		procesar_eventos(window, posicion,t,e,p,m);
 
 		if (atacar == false) {
-			
-			  
-			
-
 
 			txt_carta1->setString(m.nombre_carta(m, 0));
 			txt_carta2->setString(m.nombre_carta(m, 1));
@@ -350,7 +339,6 @@ void combate::iniciar_pelea(sf::RenderWindow* window, Enemigo& e, PersonajePrinc
 			window->draw(*txt_huir);
 			txt_vida_p->setString(to_string(vida_personaje));
 			txt_vida_e->setString(to_string(vida_enemigo));
-
 			
 		}
 		else {

@@ -1,4 +1,5 @@
 #include "turno.h"
+#include "aniomaciones.h"
 
 void turno::set0()
 {
@@ -30,6 +31,7 @@ int turno::get_elecion()
 void turno::efecto_de_carta(Enemigo& e, PersonajePrincipal& p, Mazo& m)
 {
 	Carta c;
+	animaciones a;
 	cout << "peru" << c.get_valor() << "peru";
 	cout << "peru" << c.get_nombre() << "peru";
 	cout << "e:" << e.get_vida() << endl;
@@ -38,12 +40,14 @@ void turno::efecto_de_carta(Enemigo& e, PersonajePrincipal& p, Mazo& m)
 	{
 		p.modificar_vida(c.get_valor());
 		p.set_pierdeturno(c.get_stun());
+		a.setAnimacion(20.0f, 20.0f);
 	}
 	else
 	{
 		cout << "peru" << c.get_valor() << "peru";
 		e.modificar_vida(c.get_valor());
 		e.set_pierdeturno(c.get_stun());
+		a.setAnimacion(20.0f, 20.0f);
 	}
 	cout << "e:" << e.get_vida() << endl;
 	cout << "p:" << p.get_vida() << endl;

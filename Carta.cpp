@@ -15,8 +15,7 @@ char* Carta::get_nombre() {
  }
 
 void Carta::crear_carta()
-{
-	
+{	
 	FILE* p;
 	Carta a;
 	char nombre[20];
@@ -53,5 +52,7 @@ bool Carta::get_stun()
 {
 	return _stun;
 }
+
+
 
 

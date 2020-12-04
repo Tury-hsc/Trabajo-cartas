@@ -157,6 +157,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="aniomaciones.cpp" />
     <ClCompile Include="Carta.cpp" />
     <ClCompile Include="dungeon.cpp" />
     <ClCompile Include="Enemigo.cpp" />
@@ -171,6 +172,7 @@
     <ClCompile Include="turno.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="aniomaciones.h" />
     <ClInclude Include="dungeon.h" />
     <ClInclude Include="Esenario.h" />
     <ClInclude Include="Carta.h" />
