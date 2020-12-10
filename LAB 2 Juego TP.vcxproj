@@ -168,6 +168,7 @@
     <ClCompile Include="mapa.cpp" />
     <ClCompile Include="Mazo.cpp" />
     <ClCompile Include="menu.cpp" />
+    <ClCompile Include="npc.cpp" />
     <ClCompile Include="PersonajePrincipal.cpp" />
     <ClCompile Include="turno.cpp" />
   </ItemGroup>
@@ -183,6 +184,7 @@
     <ClInclude Include="mapa.h" />
     <ClInclude Include="Mazo.h" />
     <ClInclude Include="menu.h" />
+    <ClInclude Include="npc.h" />
     <ClInclude Include="PersonajePrincipal.h" />
     <ClInclude Include="turno.h" />
   </ItemGroup>

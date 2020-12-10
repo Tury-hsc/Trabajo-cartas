@@ -1,39 +1,13 @@
-﻿  aniomaciones.cpp
-C:\Users\nahuel\Desktop\Trabajo-cartas\aniomaciones.cpp(20,42): warning C4244: 'argumento': conversión de 'T' a 'float'; posible pérdida de datos
-          with
-          [
-              T=unsigned int
-          ]
-C:\Users\nahuel\Desktop\Trabajo-cartas\aniomaciones.cpp(20,31): warning C4244: 'argumento': conversión de 'T' a 'float'; posible pérdida de datos
-          with
-          [
-              T=unsigned int
-          ]
-  Carta.cpp
-  dungeon.cpp
-  Enemigo.cpp
-C:\Users\nahuel\Desktop\Trabajo-cartas\Enemigo.cpp(19,12): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
-  Estadisticas.cpp
-  gamePlay.cpp
-  interfaz_combate_.cpp
-  LAB 2 Juego TP.cpp
-  mapa.cpp
-  Mazo.cpp
-C:\Users\nahuel\Desktop\Trabajo-cartas\Mazo.cpp(67,15): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
-C:\Users\nahuel\Desktop\Trabajo-cartas\Mazo.cpp(73,26): warning C4267: '=': conversión de 'size_t' a 'int'; posible pérdida de datos
-C:\Users\nahuel\Desktop\Trabajo-cartas\Mazo.cpp(99,15): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
-  menu.cpp
-  PersonajePrincipal.cpp
-C:\Users\nahuel\Desktop\Trabajo-cartas\PersonajePrincipal.cpp(31,43): warning C4244: 'argumento': conversión de 'T' a 'float'; posible pérdida de datos
-          with
-          [
-              T=unsigned int
-          ]
-C:\Users\nahuel\Desktop\Trabajo-cartas\PersonajePrincipal.cpp(31,32): warning C4244: 'argumento': conversión de 'T' a 'float'; posible pérdida de datos
-          with
-          [
-              T=unsigned int
-          ]
-  turno.cpp
+﻿  gamePlay.cpp
+  npc.cpp
+C:\Users\Emi\Documents\GitHub\Trabajo-cartas\npc.cpp(5,20): error C2664: 'void npc::set_nombre(char *)': el argumento 1 no puede convertirse de 'char' a 'char *'
+C:\Users\Emi\Documents\GitHub\Trabajo-cartas\npc.cpp(5,13): message : La conversión de un tipo entero a un tipo de puntero requiere reinterpret_cast, conversión de estilo de C o conversión de estilo de función
+C:\Users\Emi\Documents\GitHub\Trabajo-cartas\npc.h(19,7): message : vea la declaración de 'npc::set_nombre'
+C:\Users\Emi\Documents\GitHub\Trabajo-cartas\npc.cpp(6,15): error C2660: 'npc::setText': la función no acepta 1 argumentos
+C:\Users\Emi\Documents\GitHub\Trabajo-cartas\npc.h(20,7): message : vea la declaración de 'npc::setText'
+C:\Users\Emi\Documents\GitHub\Trabajo-cartas\npc.cpp(7,17): error C2660: 'npc::setFont': la función no acepta 1 argumentos
+C:\Users\Emi\Documents\GitHub\Trabajo-cartas\npc.h(21,7): message : vea la declaración de 'npc::setFont'
+C:\Users\Emi\Documents\GitHub\Trabajo-cartas\npc.cpp(38,4): error C2039: "setFont": no es un miembro de "sf::Font"
+C:\Users\Emi\Documents\GitHub\Trabajo-cartas\SFML-2.5.1\include\SFML\Graphics\Font.hpp(50): message : vea la declaración de 'sf::Font'
+C:\Users\Emi\Documents\GitHub\Trabajo-cartas\npc.cpp(39,1): error C2143: error de sintaxis: falta ';' delante de '}'
   Generando código...
-  LAB 2 Juego TP.vcxproj -> C:\Users\nahuel\Desktop\Trabajo-cartas\x64\Debug\LAB 2 Juego TP.exe

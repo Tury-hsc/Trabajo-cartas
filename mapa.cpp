@@ -1,8 +1,9 @@
+#include <iostream>
 #include "mapa.h"
 
-void mapa::setTextureMap()
+void mapa::setTextureMap(std::string x)
 {
-	_textureMap.loadFromFile("Graphics\\mapa.png");
+	_textureMap.loadFromFile(x);
 	_spriteMap.setTexture(_textureMap);
 }
 

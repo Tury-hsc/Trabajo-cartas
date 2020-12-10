@@ -11,7 +11,7 @@ private:
 public:
 	sf::Sprite getMap();
 	void setMap();
-	void setTextureMap();
+	void setTextureMap(std::string x);
 
 
 

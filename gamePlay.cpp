@@ -7,6 +7,7 @@
 #include "PersonajePrincipal.h"
 #include "gamePlay.h"
 #include "interfaz_combate.h"
+#include "npc.h"
 
 //p(40,20,20,20) , e (30,10,20,20)
 gamePlay::gamePlay() {
@@ -75,13 +76,18 @@ void gamePlay::mostrarVentana(sf::RenderWindow* window, Enemigo& e, PersonajePri
 	if (!_musicaFondo.openFromFile("musica\\pelea3.wav")) {
 		std::cout << "No se pudo cargar el sonido" << std::endl;
 	}
-	dungeon d;
-	mapaPrincipal.setTextureMap();
+
+	dungeon d;	
+	
+
+	ciudad.setTextureMap("Graphics\\ciudad.png");
+	ciudad.setMap();
+
+	mapaPrincipal.setTextureMap("Graphics\\mapa.png");
 	mapaPrincipal.setMap();
 
 	_musicaFondo.play();
 	_musicaFondo.setVolume(20);
-
 
 	while (window->isOpen())
 	{

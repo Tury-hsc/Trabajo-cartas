@@ -12,6 +12,7 @@ private:
 	sf::Vector2f pos;// = kloster.getPosition();	
 	//PersonajePrincipal p;
 	mapa mapaPrincipal;
+	mapa ciudad;
 	//Enemigo e;
 	
 public:
