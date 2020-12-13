@@ -106,6 +106,10 @@ void gamePlay::mostrarVentana(sf::RenderWindow* window, Enemigo& e, PersonajePri
 		collisionDg(d,p,window,e);
 
 		p.moverPj(frame, x, y);
+		
+		sf::String a = "pene";
+
+		npc np("Brian Lara", "Mago Kloster, el dragon esta vivo y necesitamos sus poderes para derrotarlo, ¿Podrias ayudarnos?", "Graphics\\mj.png");
 
 		window->draw(mapaPrincipal.getMap());
 		window->draw(d.getDungeon());

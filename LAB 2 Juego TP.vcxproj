@@ -170,6 +170,7 @@
     <ClCompile Include="menu.cpp" />
     <ClCompile Include="npc.cpp" />
     <ClCompile Include="PersonajePrincipal.cpp" />
+    <ClCompile Include="Texto.cpp" />
     <ClCompile Include="turno.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -186,6 +187,7 @@
     <ClInclude Include="menu.h" />
     <ClInclude Include="npc.h" />
     <ClInclude Include="PersonajePrincipal.h" />
+    <ClInclude Include="Texto.h" />
     <ClInclude Include="turno.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

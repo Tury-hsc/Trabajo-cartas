@@ -10,6 +10,7 @@ using namespace std;
 #include <Windows.h>
 #include  "gamePlay.h"
 #include "menu.h"
+#include"Texto.h"
 
 /*
 int main()
@@ -36,7 +37,11 @@ int main()
 	
 	//Carta carta;
 	//carta.crear_carta();
-	
+
+	/*Texto texto;
+	texto.setTexto();
+	texto.mostrarTexto();*/
+
 	Enemigo e(50,10,1,1);
 	PersonajePrincipal p(50,11,1,1);
 	menu i;

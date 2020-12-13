@@ -1,10 +1,11 @@
 #include "npc.h"
 
-npc::npc(sf::String _nombre ,sf::Text _text, sf::Font _fuente)
+npc::npc(sf::String nombre, sf::String texto, sf::String fuente)
 {
-	set_nombre(_nombre);
-	setText(_text, "asdfasdfasdfasdf");
-	setFont(_fuente, _text);
+	setFont(fuente);
+	set_nombre(nombre);
+	setText(texto);
+	
 }
 
 void npc::setNpc(float x, float y)
@@ -29,13 +30,14 @@ void npc::set_nombre(sf::String n)
 	_nombre = n;
 }
 
-void npc::setText(sf::Text n, std::string x)
+void npc::setText(std::string x)
 {	
-	n.setString(x);
+	_text.setFont(_fuente);
+	_text.setString(x);
 
 }
 
-void npc::setFont(sf::Font n, sf::Text x)
+void npc::setFont(sf::String fuente)
 {
-	x.setFont(n);
+	_fuente.loadFromFile(fuente);
 }

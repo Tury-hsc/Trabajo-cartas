@@ -11,13 +11,13 @@ private:
 	sf::Text _text;
 
 public:
-	npc(sf::String _nombre, sf::Text _text, sf::Font _fuente);
+	npc(sf::String nombre, sf::String texto, sf::String fuente);
 	sf::Sprite getNpc() { return _spriteNpc; }
 	void setNpc(float x, float y);
 	void setTextureNpc(std::string x);
 	void set_nombre(sf::String n);
-	void setText(sf::Text n, std::string x);
-	void setFont(sf::Font n, sf::Text x);
+	void setText(std::string x);
+	void setFont(sf::String fuente);
 
 };
 
