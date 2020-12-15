@@ -1,6 +1,6 @@
 #include "npc.h"
 
-npc::npc(sf::String nombre, sf::String texto, sf::String fuente)
+npc::npc(sf::String nombre, char* texto, sf::String fuente)
 {
 	setFont(fuente);
 	set_nombre(nombre);
@@ -14,10 +14,10 @@ void npc::setNpc(float x, float y)
 	tamTextura.x /= 6;
 	tamTextura.y /= 4;
 	_spriteNpc.setTextureRect(sf::IntRect(tamTextura.x * 0, tamTextura.y * 0, tamTextura.x, tamTextura.y));
-	_spriteNpc.setPosition(sf::Vector2f(600.0f, 500.0f));
+	_spriteNpc.setPosition(x, y);
 }
 
-void npc::setTextureNpc(std::string x)
+void npc::setTextureNpc()
 {
 	_textureNpc.loadFromFile("Graphics\\kloster.png");
 	_spriteNpc.setTexture(_textureNpc);
@@ -40,4 +40,13 @@ void npc::setText(std::string x)
 void npc::setFont(sf::String fuente)
 {
 	_fuente.loadFromFile(fuente);
+}
+
+sf::RectangleShape npc::setCollisionNpc(float x, float y)
+{
+	sf::RectangleShape _collisionNpc(sf::Vector2f(20, 25));
+	_collisionNpc.setOrigin(sf::Vector2f(20 / 2, 25 / 2));
+	_collisionNpc.setFillColor(sf::Color::Black);
+	_collisionNpc.setPosition(x, y);
+	return _collisionNpc;
 }

@@ -1,6 +1,11 @@
 #include "Texto.h"
 #include<iostream>
 
+char* Texto::getTexto() {
+
+	return texto;
+}
+
 void Texto::setTexto() {
 	FILE* p;
 
@@ -28,17 +33,13 @@ bool Texto::leerDeDisco(int pos)
 	return leyo;
 }
 
-void Texto::mostrarTexto() {
+char* Texto::obtenerTexto(int pos) {
 	Texto a;
-	char texto_nuevo[300];
-	int pos = 0;
 
-	while (a.leerDeDisco(pos) == true) {
-		strcpy(texto_nuevo, a.getTexto());
-		std::cout << texto_nuevo;
-		pos++;
+	if (a.leerDeDisco(pos) == true) {
+		//std::cout<<a.getTexto()<<std::endl;
+		return a.getTexto();
 	}
 
-	system("pause");
 }
 

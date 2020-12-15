@@ -8,8 +8,8 @@ private:
 public:
 
 	void setTexto();
-	void mostrarTexto();
+	char* obtenerTexto(int pos);
 	bool leerDeDisco(int pos);
-	char* getTexto() { return texto; }
+	char* getTexto();
 };
 

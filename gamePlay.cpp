@@ -8,6 +8,7 @@
 #include "gamePlay.h"
 #include "interfaz_combate.h"
 #include "npc.h"
+#include "Texto.h"
 
 //p(40,20,20,20) , e (30,10,20,20)
 gamePlay::gamePlay() {
@@ -69,6 +70,36 @@ void gamePlay::collisionMapa(PersonajePrincipal& p)
 	
 }
 
+void gamePlay::collisionNpc(PersonajePrincipal& p, npc& np, sf::RenderWindow * window) {
+	if (p.setCollisionPj().getGlobalBounds().intersects(np.setCollisionNpc(20,400).getGlobalBounds())) {
+
+		switch (p.getEstado()) {
+		case 1:
+			if (p.setCollisionPj().getPosition().y <= np.setCollisionNpc(20, 400).getPosition().y) {//BAJANDO
+				window->draw(np.getText());
+			}
+			break;
+		case 2:
+			if (p.setCollisionPj().getPosition().y >= np.setCollisionNpc(20, 400).getPosition().y) {//SUBIENDO
+				window->draw(np.getText());
+			}
+			break;
+		case 3:
+			if (p.setCollisionPj().getPosition().x <= np.setCollisionNpc(20, 400).getPosition().x) {//YENDO DERECHA
+				window->draw(np.getText());
+			}
+			break;
+		case 4:
+			if (p.setCollisionPj().getPosition().x >= np.setCollisionNpc(20, 400).getPosition().x) {//YENDO IZQUIERDA
+				window->draw(np.getText());
+			}
+			break;
+		case 0:
+			break;
+		}
+	}
+}
+
 void gamePlay::mostrarVentana(sf::RenderWindow* window, Enemigo& e, PersonajePrincipal& p)
 {
 	sf::Music _musicaFondo;
@@ -78,7 +109,15 @@ void gamePlay::mostrarVentana(sf::RenderWindow* window, Enemigo& e, PersonajePri
 	}
 
 	dungeon d;	
-	
+	Texto ff;
+
+	char a[300];
+	strcpy(a, ff.obtenerTexto(0));
+
+	npc np("Brian Lara", a, "Enchanted_Land.otf");
+
+	np.setTextureNpc();
+	np.setNpc(20, 400);
 
 	ciudad.setTextureMap("Graphics\\ciudad.png");
 	ciudad.setMap();
@@ -107,15 +146,19 @@ void gamePlay::mostrarVentana(sf::RenderWindow* window, Enemigo& e, PersonajePri
 
 		p.moverPj(frame, x, y);
 		
-		sf::String a = "pene";
 
-		npc np("Brian Lara", "Mago Kloster, el dragon esta vivo y necesitamos sus poderes para derrotarlo, ¿Podrias ayudarnos?", "Graphics\\mj.png");
+		//std::cout << a << endl;
+
+		
 
 		window->draw(mapaPrincipal.getMap());
 		window->draw(d.getDungeon());
 		window->draw(d.setCollisionDg());		
 		window->draw(p.setCollisionPj());
-		window->draw(p.getPlayer());		
+		window->draw(p.getPlayer());
+		window->draw(np.getNpc());
+		window->draw(np.setCollisionNpc(20, 400));
+		collisionNpc(p, np, window);
 		window->display();
 		frame += .2f;
 	}
