@@ -27,7 +27,7 @@ void menu::eventos(sf::Vector2f posicion, Enemigo& e, PersonajePrincipal& p) {
 					window->clear();
 					_musicaFondo->stop();
 					gamePlay juego;
-					juego.mostrarVentana(window,e,p);
+					juego.mostrarVentana(window,e,p,500,500);
 				}
 				else {
 					_musicaFondo->stop();

@@ -34,6 +34,10 @@ void npc::setText(std::string x)
 {	
 	_text.setFont(_fuente);
 	_text.setString(x);
+	_text.setCharacterSize(21.5f);
+	_text.setPosition(35, 620);
+	_text.setOutlineColor(sf::Color::Black);
+	_text.setOutlineThickness(2);
 
 }
 
@@ -44,8 +48,8 @@ void npc::setFont(sf::String fuente)
 
 sf::RectangleShape npc::setCollisionNpc(float x, float y)
 {
-	sf::RectangleShape _collisionNpc(sf::Vector2f(20, 25));
-	_collisionNpc.setOrigin(sf::Vector2f(20 / 2, 25 / 2));
+	sf::RectangleShape _collisionNpc(sf::Vector2f(50, 50));
+	_collisionNpc.setOrigin(sf::Vector2f(50 / 2, 50 / 2));
 	_collisionNpc.setFillColor(sf::Color::Black);
 	_collisionNpc.setPosition(x, y);
 	return _collisionNpc;

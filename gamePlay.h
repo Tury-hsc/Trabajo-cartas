@@ -10,6 +10,7 @@ class gamePlay
 {
 private:	
 	float frame , x, y;
+	bool musica1 = true;
 	sf::Vector2f pos;// = kloster.getPosition();	
 	//PersonajePrincipal p;
 	mapa mapaPrincipal;
@@ -20,10 +21,12 @@ public:
 	gamePlay();
 	void collisionObjetos(PersonajePrincipal& p, Enemigo& e, sf::RenderWindow* window);
 	void collisionMapa(PersonajePrincipal& p);
-	void mostrarVentana(sf::RenderWindow* window, Enemigo& e, PersonajePrincipal& p);
+	void mostrarVentana(sf::RenderWindow* window, Enemigo& e, PersonajePrincipal& p, float posx, float posy);
 	void collisionDg(dungeon d, PersonajePrincipal& p, sf::RenderWindow* window, Enemigo& e);
 	void collisionRio(PersonajePrincipal& p);
 	void collisionNpc(PersonajePrincipal& p, npc& np, sf::RenderWindow * window);
-	void collisionBosque(PersonajePrincipal& p, sf::RectangleShape paso);
+	void collisionBosque(PersonajePrincipal& p, sf::RectangleShape paso, sf::RenderWindow* window, Enemigo& e);
+	void mapa2(sf::RenderWindow* window, Enemigo& e, PersonajePrincipal& p, float posx, float posy);
+	void collisionCiudad(PersonajePrincipal& p, sf::RectangleShape paso, sf::RenderWindow* window, Enemigo& e);
 };
 

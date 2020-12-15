@@ -70,39 +70,18 @@ void gamePlay::collisionMapa(PersonajePrincipal& p)
 	
 }
 
-void gamePlay::collisionNpc(PersonajePrincipal& p, npc& np, sf::RenderWindow * window) {
-	if (p.setCollisionPj().getGlobalBounds().intersects(np.setCollisionNpc(20,400).getGlobalBounds())) {
+void gamePlay::collisionNpc(PersonajePrincipal& p, npc& np, sf::RenderWindow* window) {
 
-		switch (p.getEstado()) {
-		case 1:
-			if (p.setCollisionPj().getPosition().y <= np.setCollisionNpc(20, 400).getPosition().y) {//BAJANDO
-				window->draw(np.getText());
-			}
-			break;
-		case 2:
-			if (p.setCollisionPj().getPosition().y >= np.setCollisionNpc(20, 400).getPosition().y) {//SUBIENDO
-				window->draw(np.getText());
-			}
-			break;
-		case 3:
-			if (p.setCollisionPj().getPosition().x <= np.setCollisionNpc(20, 400).getPosition().x) {//YENDO DERECHA
-				window->draw(np.getText());
-			}
-			break;
-		case 4:
-			if (p.setCollisionPj().getPosition().x >= np.setCollisionNpc(20, 400).getPosition().x) {//YENDO IZQUIERDA
-				window->draw(np.getText());
-			}
-			break;
-		case 0:
-			break;
-		}
+	if (p.setCollisionPj().getPosition().y >= 515 && p.setCollisionPj().getPosition().y <= 565) {//BAJANDO
+		if (p.setCollisionPj().getPosition().x >= 655 && p.setCollisionPj().getPosition().x <= 705)
+			window->draw(np.getText());
 	}
 }
 
-void gamePlay::mostrarVentana(sf::RenderWindow* window, Enemigo& e, PersonajePrincipal& p)
+void gamePlay::mostrarVentana(sf::RenderWindow* window, Enemigo& e, PersonajePrincipal& p, float posx, float posy)
 {
 	sf::Music _musicaFondo;
+	
 	
 	if (!_musicaFondo.openFromFile("musica\\pelea3.wav")) {
 		std::cout << "No se pudo cargar el sonido" << std::endl;
@@ -117,10 +96,10 @@ void gamePlay::mostrarVentana(sf::RenderWindow* window, Enemigo& e, PersonajePri
 	npc np("Brian Lara", a, "Enchanted_Land.otf");
 
 	np.setTextureNpc();
-	np.setNpc(20, 400);
+	np.setNpc(674, 460);
 
 	sf::RectangleShape paso;
-	paso.setSize({ 180,20 });
+	paso.setSize({ 157,20 });
 	paso.setFillColor(sf::Color::Black);
 	paso.setPosition(400, 25);
 
@@ -130,8 +109,13 @@ void gamePlay::mostrarVentana(sf::RenderWindow* window, Enemigo& e, PersonajePri
 	mapaPrincipal.setTextureMap("Graphics\\mapa.png");
 	mapaPrincipal.setMap(550, 300);
 
-	_musicaFondo.play();
-	_musicaFondo.setVolume(20);
+	if (musica1 == true) {
+		_musicaFondo.play();
+		_musicaFondo.setVolume(20);
+		musica1 = false;
+	}
+
+	p.setPlayer(posx, posy);
 
 	while (window->isOpen())
 	{
@@ -140,12 +124,10 @@ void gamePlay::mostrarVentana(sf::RenderWindow* window, Enemigo& e, PersonajePri
 		{
 			if (event.type == sf::Event::Closed)
 				window->close();
-			if (event.type == sf::Event::KeyPressed) {
-				
-			}
+			
 		}		
 		collisionMapa(p);	
-		collisionBosque(p, paso);
+		collisionBosque(p, paso, window, e);
 		//collisionRio(p);
 		//collisionDg(d,p,window,e);
 		p.moverPj(frame, x, y);
@@ -157,12 +139,62 @@ void gamePlay::mostrarVentana(sf::RenderWindow* window, Enemigo& e, PersonajePri
 		window->draw(p.setCollisionPj());
 		window->draw(p.getPlayer());
 		window->draw(np.getNpc());
-		window->draw(np.setCollisionNpc(20, 400));
+		window->draw(np.setCollisionNpc(680, 540));
 		collisionNpc(p, np, window);
 		window->display();
 		frame += .2f;
 	}
 	_musicaFondo.stop();
+}
+
+void gamePlay::mapa2(sf::RenderWindow* window, Enemigo& e, PersonajePrincipal& p, float posx, float posy)
+{
+
+	dungeon d;
+	
+	sf::RectangleShape paso;
+	paso.setSize({ 157,20 });
+	paso.setFillColor(sf::Color::Black);
+	paso.setPosition(400, 700);
+
+	mapaPrincipal.setTextureMap("Graphics\\mapa.png");
+	mapaPrincipal.setMap(500, 250);
+
+	mapaPrincipal.setTextureMap("Graphics\\mapa.png");
+	mapaPrincipal.setMap(550, 300);
+
+	p.setPlayer(posx, posy);
+
+	while (window->isOpen())
+	{
+		sf::Event event;
+		while (window->pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed)
+				window->close();
+			if (event.type == sf::Event::KeyPressed) {
+
+			}
+		}
+		collisionMapa(p);
+		collisionCiudad(p, paso, window, e);
+		collisionRio(p);
+		collisionDg(d,p,window,e);
+		p.moverPj(frame, x, y);
+		//std::cout << a << endl;
+		window->draw(mapaPrincipal.getMap());
+		window->draw(paso);
+		window->draw(d.getDungeon());
+		window->draw(d.setCollisionDg());		
+		window->draw(p.setCollisionPj());
+		window->draw(p.getPlayer());
+		//window->draw(np.getNpc());
+		//window->draw(np.setCollisionNpc(20, 400));
+		//collisionNpc(p, np, window);
+		window->display();
+		frame += .2f;
+	}
+	
 }
 
 void gamePlay::collisionDg(dungeon d, PersonajePrincipal& p, sf::RenderWindow* window, Enemigo& e)
@@ -265,28 +297,47 @@ void gamePlay::collisionRio(PersonajePrincipal& p) {
 	}
 }
 
-void gamePlay::collisionBosque(PersonajePrincipal& p, sf::RectangleShape paso) {	
+void gamePlay::collisionBosque(PersonajePrincipal& p, sf::RectangleShape paso, sf::RenderWindow* window, Enemigo& e) {
 
+	if (p.setCollisionPj().getGlobalBounds().intersects(paso.getGlobalBounds())) {
+		switch (p.getEstado()) {
+		case 1:
+			if (p.setCollisionPj().getPosition().y >= paso.getPosition().y) {//SUBIENDO
+				window->clear();
+				mapa2(window, e, p, 450, 640);
+			}
+			break;
+		case 0:
+			break;
+		}
+	}
+}
+
+void gamePlay::collisionCiudad(PersonajePrincipal& p, sf::RectangleShape paso, sf::RenderWindow* window, Enemigo& e) {
 	if (p.setCollisionPj().getGlobalBounds().intersects(paso.getGlobalBounds())) {
 		switch (p.getEstado()) {
 		case 2:
 			if (p.setCollisionPj().getPosition().y <= paso.getPosition().y) {//BAJANDO
-				//llevar al mapa siguiente
+				window->clear();
+				mostrarVentana(window, e, p, 450, 30);
 			}
 			break;
 		case 1:
 			if (p.setCollisionPj().getPosition().y >= paso.getPosition().y) {//SUBIENDO
-				//llevar al mapa 
+				window->clear();
+				mostrarVentana(window, e, p, 450, 30);
 			}
 			break;
 		case 3:
 			if (p.setCollisionPj().getPosition().x <= paso.getPosition().x) {//YENDO DERECHA
-				//llevar al mapa 
+				window->clear();
+			    mostrarVentana(window, e, p, 450, 30);
 			}
 			break;
 		case 4:
 			if (p.setCollisionPj().getPosition().x >= paso.getPosition().x) {//YENDO IZQUIERDA
-				//llevar al mapa 
+				window->clear();
+				mostrarVentana(window, e, p, 450, 30);
 			}
 			break;
 		case 0:

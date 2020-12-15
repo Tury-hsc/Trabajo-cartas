@@ -8,7 +8,7 @@ PersonajePrincipal::PersonajePrincipal(int vida, int iniciativa, int def, int at
 	set_def(def);
 	set_atk(atk);
 	setTexturePlayer();
-	setPlayer(500.0f, 500.0f);
+	//setPlayer(500.0f, 500.0f);
 }
 
 void PersonajePrincipal::setTexturePlayer()
