@@ -10,7 +10,7 @@ private:
 	sf::Sprite _spriteMap;
 public:
 	sf::Sprite getMap();
-	void setMap();
+	void setMap(int x, int y);
 	void setTextureMap(std::string x);
 
 

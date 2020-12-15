@@ -24,5 +24,6 @@ public:
 	void collisionDg(dungeon d, PersonajePrincipal& p, sf::RenderWindow* window, Enemigo& e);
 	void collisionRio(PersonajePrincipal& p);
 	void collisionNpc(PersonajePrincipal& p, npc& np, sf::RenderWindow * window);
+	void collisionBosque(PersonajePrincipal& p, sf::RectangleShape paso);
 };
 

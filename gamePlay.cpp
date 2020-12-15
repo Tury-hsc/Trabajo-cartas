@@ -119,11 +119,16 @@ void gamePlay::mostrarVentana(sf::RenderWindow* window, Enemigo& e, PersonajePri
 	np.setTextureNpc();
 	np.setNpc(20, 400);
 
+	sf::RectangleShape paso;
+	paso.setSize({ 180,20 });
+	paso.setFillColor(sf::Color::Black);
+	paso.setPosition(400, 25);
+
 	ciudad.setTextureMap("Graphics\\ciudad.png");
-	ciudad.setMap();
+	ciudad.setMap(500, 250);
 
 	mapaPrincipal.setTextureMap("Graphics\\mapa.png");
-	mapaPrincipal.setMap();
+	mapaPrincipal.setMap(550, 300);
 
 	_musicaFondo.play();
 	_musicaFondo.setVolume(20);
@@ -138,22 +143,17 @@ void gamePlay::mostrarVentana(sf::RenderWindow* window, Enemigo& e, PersonajePri
 			if (event.type == sf::Event::KeyPressed) {
 				
 			}
-		}
-		
-		collisionMapa(p);		
-		collisionRio(p);
-		collisionDg(d,p,window,e);
-
+		}		
+		collisionMapa(p);	
+		collisionBosque(p, paso);
+		//collisionRio(p);
+		//collisionDg(d,p,window,e);
 		p.moverPj(frame, x, y);
-		
-
 		//std::cout << a << endl;
-
-		
-
-		window->draw(mapaPrincipal.getMap());
-		window->draw(d.getDungeon());
-		window->draw(d.setCollisionDg());		
+		window->draw(ciudad.getMap());
+		window->draw(paso);
+		//window->draw(d.getDungeon());
+		//window->draw(d.setCollisionDg());		
 		window->draw(p.setCollisionPj());
 		window->draw(p.getPlayer());
 		window->draw(np.getNpc());
@@ -263,6 +263,34 @@ void gamePlay::collisionRio(PersonajePrincipal& p) {
 			break;
 		}
 	}
-
 }
 
+void gamePlay::collisionBosque(PersonajePrincipal& p, sf::RectangleShape paso) {	
+
+	if (p.setCollisionPj().getGlobalBounds().intersects(paso.getGlobalBounds())) {
+		switch (p.getEstado()) {
+		case 2:
+			if (p.setCollisionPj().getPosition().y <= paso.getPosition().y) {//BAJANDO
+				//llevar al mapa siguiente
+			}
+			break;
+		case 1:
+			if (p.setCollisionPj().getPosition().y >= paso.getPosition().y) {//SUBIENDO
+				//llevar al mapa 
+			}
+			break;
+		case 3:
+			if (p.setCollisionPj().getPosition().x <= paso.getPosition().x) {//YENDO DERECHA
+				//llevar al mapa 
+			}
+			break;
+		case 4:
+			if (p.setCollisionPj().getPosition().x >= paso.getPosition().x) {//YENDO IZQUIERDA
+				//llevar al mapa 
+			}
+			break;
+		case 0:
+			break;
+		}
+	}
+}
