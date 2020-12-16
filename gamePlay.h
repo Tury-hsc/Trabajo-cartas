@@ -28,5 +28,9 @@ public:
 	void collisionBosque(PersonajePrincipal& p, sf::RectangleShape paso, sf::RenderWindow* window, Enemigo& e);
 	void mapa2(sf::RenderWindow* window, Enemigo& e, PersonajePrincipal& p, float posx, float posy);
 	void collisionCiudad(PersonajePrincipal& p, sf::RectangleShape paso, sf::RenderWindow* window, Enemigo& e);
+	void collisionCerca(PersonajePrincipal& p);
+	void collisionFuente(PersonajePrincipal& p);
+	void collisionPlantas(PersonajePrincipal& p);
+	void collisionSillas(PersonajePrincipal& p);
 };
 
