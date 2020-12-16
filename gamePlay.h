@@ -15,10 +15,13 @@ private:
 	//PersonajePrincipal p;
 	mapa mapaPrincipal;
 	mapa ciudad;
+	sf::Texture* textura_dialogo;
+	sf::Sprite* dialogo;
 	//Enemigo e;
 	
 public:
 	gamePlay();
+	void setCuadroDialogo();
 	void collisionObjetos(PersonajePrincipal& p, Enemigo& e, sf::RenderWindow* window);
 	void collisionMapa(PersonajePrincipal& p);
 	void mostrarVentana(sf::RenderWindow* window, Enemigo& e, PersonajePrincipal& p, float posx, float posy);
@@ -32,5 +35,7 @@ public:
 	void collisionFuente(PersonajePrincipal& p);
 	void collisionPlantas(PersonajePrincipal& p);
 	void collisionSillas(PersonajePrincipal& p);
+	void collisionParteDerecha(PersonajePrincipal& p);
+	void collisionParteDerechaAbajo(PersonajePrincipal& p);
 };
 

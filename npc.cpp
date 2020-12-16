@@ -35,10 +35,16 @@ void npc::setText(std::string x)
 	_text.setFont(_fuente);
 	_text.setString(x);
 	_text.setCharacterSize(21.5f);
-	_text.setPosition(35, 620);
+	_text.setPosition(35, 630);
 	_text.setOutlineColor(sf::Color::Black);
 	_text.setOutlineThickness(2);
 
+	_textNombre.setFont(_fuente);
+	_textNombre.setString(_nombre);
+	_textNombre.setCharacterSize(21.5f);
+	_textNombre.setPosition(35, 590);
+	_textNombre.setOutlineColor(sf::Color::Black);
+	_textNombre.setOutlineThickness(2);
 }
 
 void npc::setFont(sf::String fuente)

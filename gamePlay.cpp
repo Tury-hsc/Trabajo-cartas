@@ -17,6 +17,17 @@ gamePlay::gamePlay() {
 	y = 0;
 }
 
+void gamePlay::setCuadroDialogo() {
+
+	textura_dialogo = new sf::Texture();
+	textura_dialogo->loadFromFile("Graphics\\tabla.png");
+
+	dialogo = new sf::Sprite(*textura_dialogo);
+	dialogo->setScale(3.2f, 0.5f);
+	dialogo->setPosition(7, 580);
+
+}
+
 void gamePlay::collisionObjetos(PersonajePrincipal& p, Enemigo& e, sf::RenderWindow* window)
 {
 	if (p.setCollisionPj().getGlobalBounds().intersects(e.setCollisionDragon().getGlobalBounds())) {
@@ -73,8 +84,11 @@ void gamePlay::collisionMapa(PersonajePrincipal& p)
 void gamePlay::collisionNpc(PersonajePrincipal& p, npc& np, sf::RenderWindow* window) {
 
 	if (p.setCollisionPj().getPosition().y >= 515 && p.setCollisionPj().getPosition().y <= 565) {//BAJANDO
-		if (p.setCollisionPj().getPosition().x >= 655 && p.setCollisionPj().getPosition().x <= 705)
+		if (p.setCollisionPj().getPosition().x >= 655 && p.setCollisionPj().getPosition().x <= 705) {
+			window->draw(*dialogo);
 			window->draw(np.getText());
+			window->draw(np.getTextNombre());
+		}
 	}
 }
 
@@ -86,8 +100,7 @@ void gamePlay::mostrarVentana(sf::RenderWindow* window, Enemigo& e, PersonajePri
 	if (!_musicaFondo.openFromFile("musica\\pelea3.wav")) {
 		std::cout << "No se pudo cargar el sonido" << std::endl;
 	}
-
-	dungeon d;	
+	
 	Texto ff;
 
 	char a[300];
@@ -98,15 +111,12 @@ void gamePlay::mostrarVentana(sf::RenderWindow* window, Enemigo& e, PersonajePri
 	np.setTextureNpc();
 	np.setNpc(674, 460);
 
+	setCuadroDialogo();
+
 	sf::RectangleShape paso;
 	paso.setSize({ 157,20 });
 	paso.setFillColor(sf::Color::Black);
 	paso.setPosition(400, 25);
-
-	/*sf::RectangleShape rio;
-	rio.setSize({ 10,100 });
-	rio.setFillColor(sf::Color::Black);
-	rio.setPosition(370, 230);*/
 
 	ciudad.setTextureMap("Graphics\\ciudad.png");
 	ciudad.setMap(500, 250);
@@ -132,25 +142,21 @@ void gamePlay::mostrarVentana(sf::RenderWindow* window, Enemigo& e, PersonajePri
 			
 		}
 
+		collisionParteDerechaAbajo(p);
+		collisionParteDerecha(p);
 		collisionSillas(p);
 		collisionPlantas(p);
 		collisionFuente(p);
 		collisionCerca(p);
 		collisionMapa(p);	
 		collisionBosque(p, paso, window, e);
-		//collisionRio(p);
-		//collisionDg(d,p,window,e);
 		p.moverPj(frame, x, y);
-		//std::cout << a << endl;
 		window->draw(ciudad.getMap());
-		window->draw(paso);
-		//window->draw(d.getDungeon());
-		//window->draw(d.setCollisionDg());	
-		//window->draw(rio);
+		window->draw(paso);	
 		window->draw(p.setCollisionPj());
 		window->draw(p.getPlayer());
 		window->draw(np.getNpc());
-		window->draw(np.setCollisionNpc(680, 540));
+		//window->draw(np.setCollisionNpc(680, 540));
 		collisionNpc(p, np, window);
 		window->display();
 		frame += .2f;
@@ -302,6 +308,232 @@ void gamePlay::collisionRio(PersonajePrincipal& p) {
 			break;
 		case 4:
 			if (p.setCollisionPj().getPosition().x >= rio_arriba.getPosition().x) {//YENDO IZQUIERDA
+				p.setPlayer(p.getPosition().x + 4.0f, p.getPosition().y);
+			}
+			break;
+		case 0:
+			break;
+		}
+	}
+}
+
+void gamePlay::collisionParteDerechaAbajo(PersonajePrincipal& p) {
+
+	sf::RectangleShape parte1;
+	parte1.setSize({ 9,95 });
+	parte1.setFillColor(sf::Color::Black);
+	parte1.setPosition(685, 450);
+
+	sf::RectangleShape parte2;
+	parte2.setSize({ 50,43 });
+	parte2.setFillColor(sf::Color::Black);
+	parte2.setPosition(565, 475);
+
+	sf::RectangleShape parte3;
+	parte3.setSize({ 25,24 });
+	parte3.setFillColor(sf::Color::Black);
+	parte3.setPosition(745, 500);
+
+	if (p.setCollisionPj().getGlobalBounds().intersects(parte1.getGlobalBounds())) {
+		switch (p.getEstado()) {
+		case 2:
+			if (p.setCollisionPj().getPosition().y <= parte1.getPosition().y) {//BAJANDO
+				p.setPlayer(p.getPosition().x, p.getPosition().y - 4.0f);
+			}
+			break;
+		case 1:
+			if (p.setCollisionPj().getPosition().y >= parte1.getPosition().y) {//SUBIENDO
+				p.setPlayer(p.getPosition().x, p.getPosition().y + 4.0f);
+			}
+			break;
+		case 3:
+			if (p.setCollisionPj().getPosition().x <= parte1.getPosition().x) {//YENDO DERECHA
+				p.setPlayer(p.getPosition().x - 4.0f, p.getPosition().y);
+			}
+			break;
+		case 4:
+			if (p.setCollisionPj().getPosition().x >= parte1.getPosition().x) {//YENDO IZQUIERDA
+				p.setPlayer(p.getPosition().x + 4.0f, p.getPosition().y);
+			}
+			break;
+		case 0:
+			break;
+		}
+	}
+	if (p.setCollisionPj().getGlobalBounds().intersects(parte2.getGlobalBounds())) {
+		switch (p.getEstado()) {
+		case 2:
+			if (p.setCollisionPj().getPosition().y <= parte2.getPosition().y) {//BAJANDO
+				p.setPlayer(p.getPosition().x, p.getPosition().y - 4.0f);
+			}
+			break;
+		case 1:
+			if (p.setCollisionPj().getPosition().y >= parte2.getPosition().y) {//SUBIENDO
+				p.setPlayer(p.getPosition().x, p.getPosition().y + 4.0f);
+			}
+			break;
+		case 3:
+			if (p.setCollisionPj().getPosition().x <= parte2.getPosition().x) {//YENDO DERECHA
+				p.setPlayer(p.getPosition().x - 4.0f, p.getPosition().y);
+			}
+			break;
+		case 4:
+			if (p.setCollisionPj().getPosition().x >= parte2.getPosition().x) {//YENDO IZQUIERDA
+				p.setPlayer(p.getPosition().x + 4.0f, p.getPosition().y);
+			}
+			break;
+		case 0:
+			break;
+		}
+	}
+	if (p.setCollisionPj().getGlobalBounds().intersects(parte3.getGlobalBounds())) {
+		switch (p.getEstado()) {
+		case 2:
+			if (p.setCollisionPj().getPosition().y <= parte3.getPosition().y) {//BAJANDO
+				p.setPlayer(p.getPosition().x, p.getPosition().y - 4.0f);
+			}
+			break;
+		case 1:
+			if (p.setCollisionPj().getPosition().y >= parte3.getPosition().y) {//SUBIENDO
+				p.setPlayer(p.getPosition().x, p.getPosition().y + 4.0f);
+			}
+			break;
+		case 3:
+			if (p.setCollisionPj().getPosition().x <= parte3.getPosition().x) {//YENDO DERECHA
+				p.setPlayer(p.getPosition().x - 4.0f, p.getPosition().y);
+			}
+			break;
+		case 4:
+			if (p.setCollisionPj().getPosition().x >= parte3.getPosition().x) {//YENDO IZQUIERDA
+				p.setPlayer(p.getPosition().x + 4.0f, p.getPosition().y);
+			}
+			break;
+		case 0:
+			break;
+		}
+	}
+	
+}
+
+void gamePlay::collisionParteDerecha(PersonajePrincipal& p) {
+	
+	sf::RectangleShape parte1;
+	parte1.setSize({ 1,250 });
+	parte1.setFillColor(sf::Color::Black);
+	parte1.setPosition(570, 120);
+
+	sf::RectangleShape parte2;
+	parte2.setSize({ 1,250 });
+	parte2.setFillColor(sf::Color::Black);
+	parte2.setPosition(810, 120);
+
+	sf::RectangleShape parte3;
+	parte3.setSize({ 179,30 });
+	parte3.setFillColor(sf::Color::Black);
+	parte3.setPosition(600, 160);
+
+	sf::RectangleShape parte4;
+	parte4.setSize({ 179,30 });
+	parte4.setFillColor(sf::Color::Black);
+	parte4.setPosition(600, 350);
+
+	if (p.setCollisionPj().getGlobalBounds().intersects(parte1.getGlobalBounds())) {
+		switch (p.getEstado()) {
+		case 2:
+			if (p.setCollisionPj().getPosition().y <= parte1.getPosition().y) {//BAJANDO
+				p.setPlayer(p.getPosition().x, p.getPosition().y - 4.0f);
+			}
+			break;
+		case 1:
+			if (p.setCollisionPj().getPosition().y >= parte1.getPosition().y) {//SUBIENDO
+				p.setPlayer(p.getPosition().x, p.getPosition().y + 4.0f);
+			}
+			break;
+		case 3:
+			if (p.setCollisionPj().getPosition().x <= parte1.getPosition().x) {//YENDO DERECHA
+				p.setPlayer(p.getPosition().x - 4.0f, p.getPosition().y);
+			}
+			break;
+		case 4:
+			if (p.setCollisionPj().getPosition().x >= parte1.getPosition().x) {//YENDO IZQUIERDA
+				p.setPlayer(p.getPosition().x + 4.0f, p.getPosition().y);
+			}
+			break;
+		case 0:
+			break;
+		}
+	}
+	if (p.setCollisionPj().getGlobalBounds().intersects(parte2.getGlobalBounds())) {
+		switch (p.getEstado()) {
+		case 2:
+			if (p.setCollisionPj().getPosition().y <= parte2.getPosition().y) {//BAJANDO
+				p.setPlayer(p.getPosition().x, p.getPosition().y - 4.0f);
+			}
+			break;
+		case 1:
+			if (p.setCollisionPj().getPosition().y >= parte2.getPosition().y) {//SUBIENDO
+				p.setPlayer(p.getPosition().x, p.getPosition().y + 4.0f);
+			}
+			break;
+		case 3:
+			if (p.setCollisionPj().getPosition().x <= parte2.getPosition().x) {//YENDO DERECHA
+				p.setPlayer(p.getPosition().x - 4.0f, p.getPosition().y);
+			}
+			break;
+		case 4:
+			if (p.setCollisionPj().getPosition().x >= parte2.getPosition().x) {//YENDO IZQUIERDA
+				p.setPlayer(p.getPosition().x + 4.0f, p.getPosition().y);
+			}
+			break;
+		case 0:
+			break;
+		}
+	}
+	if (p.setCollisionPj().getGlobalBounds().intersects(parte3.getGlobalBounds())) {
+		switch (p.getEstado()) {
+		case 2:
+			if (p.setCollisionPj().getPosition().y <= parte3.getPosition().y) {//BAJANDO
+				p.setPlayer(p.getPosition().x, p.getPosition().y - 4.0f);
+			}
+			break;
+		case 1:
+			if (p.setCollisionPj().getPosition().y >= parte3.getPosition().y) {//SUBIENDO
+				p.setPlayer(p.getPosition().x, p.getPosition().y + 4.0f);
+			}
+			break;
+		case 3:
+			if (p.setCollisionPj().getPosition().x <= parte3.getPosition().x) {//YENDO DERECHA
+				p.setPlayer(p.getPosition().x - 4.0f, p.getPosition().y);
+			}
+			break;
+		case 4:
+			if (p.setCollisionPj().getPosition().x >= parte3.getPosition().x) {//YENDO IZQUIERDA
+				p.setPlayer(p.getPosition().x + 4.0f, p.getPosition().y);
+			}
+			break;
+		case 0:
+			break;
+		}
+	}
+	if (p.setCollisionPj().getGlobalBounds().intersects(parte4.getGlobalBounds())) {
+		switch (p.getEstado()) {
+		case 2:
+			if (p.setCollisionPj().getPosition().y <= parte4.getPosition().y) {//BAJANDO
+				p.setPlayer(p.getPosition().x, p.getPosition().y - 4.0f);
+			}
+			break;
+		case 1:
+			if (p.setCollisionPj().getPosition().y >= parte4.getPosition().y) {//SUBIENDO
+				p.setPlayer(p.getPosition().x, p.getPosition().y + 4.0f);
+			}
+			break;
+		case 3:
+			if (p.setCollisionPj().getPosition().x <= parte4.getPosition().x) {//YENDO DERECHA
+				p.setPlayer(p.getPosition().x - 4.0f, p.getPosition().y);
+			}
+			break;
+		case 4:
+			if (p.setCollisionPj().getPosition().x >= parte4.getPosition().x) {//YENDO IZQUIERDA
 				p.setPlayer(p.getPosition().x + 4.0f, p.getPosition().y);
 			}
 			break;
@@ -476,10 +708,14 @@ void gamePlay::collisionPlantas(PersonajePrincipal& p) {
 
 void gamePlay::collisionFuente(PersonajePrincipal& p) {
 	
-	sf::RectangleShape fuente;
+	/*sf::RectangleShape fuente;
 	fuente.setSize({ 190,185 });
 	fuente.setFillColor(sf::Color::Black);
-	fuente.setPosition(213, 450);
+	fuente.setPosition(213, 450);*/
+
+	sf::CircleShape fuente(80, 70);
+	fuente.setFillColor(sf::Color::Black);
+	fuente.setPosition(225, 470);
 
 	if (p.setCollisionPj().getGlobalBounds().intersects(fuente.getGlobalBounds())) {
 		switch (p.getEstado()) {
