@@ -137,8 +137,8 @@ void menu::mostrar_menu(Enemigo& e, PersonajePrincipal& p) {
 	txt_opcion2 = new sf::Text();
 
 	setFont(fuente_texto);
-	*txt_menu = setTexto("Nombre del", 50, {398, 60});
-	*txt_menu2 = setTexto("Juego", 50, { 446,159 });
+	*txt_menu = setTexto("Kloster's", 50, {420, 60});
+	*txt_menu2 = setTexto("Adventure", 50, { 410,159 });
 	*txt_opcion1 = setTexto("Comenzar Juego", 38, { 399, 457 });
 	*txt_opcion2 = setTexto("Salir del juego", 38, { 411, 579 });
 	setTexture_iconos();
