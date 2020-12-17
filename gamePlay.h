@@ -17,6 +17,11 @@ private:
 	mapa ciudad;
 	sf::Texture* textura_dialogo;
 	sf::Sprite* dialogo;
+	sf::Texture* textura_ganaste;
+	sf::Texture* textura_perdiste;
+	sf::Sprite* sprite_ganaste;
+	sf::Sprite* sprite_perdiste;
+	sf::Music _musicaFondo;
 	//Enemigo e;
 	
 public:

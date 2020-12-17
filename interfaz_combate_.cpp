@@ -162,6 +162,7 @@ void combate::setTexture_combate(Enemigo& e/*, PersonajePrincipal& k*/) {
 
 	textura_boton = new sf::Texture();
 	textura_boton->loadFromFile("Graphics\\boton.png");
+
 }
 
 void combate::setSprite_combate() {
@@ -189,6 +190,7 @@ void combate::setSprite_combate() {
 	sprite_boton = new sf::Sprite(*textura_boton);
 	sprite_boton->setPosition(81, 560);
 	sprite_boton->setScale(0.5f, 0.5f);
+
 }
 
 void combate::setSprite_pj(Enemigo e) {
@@ -343,10 +345,6 @@ void combate::iniciar_pelea(sf::RenderWindow* window, Enemigo& e, PersonajePrinc
 
 		if (atacar == false) {
 
-
-
-
-
 			txt_carta1->setString(m.nombre_carta(m, 0));
 			txt_carta2->setString(m.nombre_carta(m, 1));
 			txt_carta3->setString(m.nombre_carta(m, 2));
@@ -470,6 +468,7 @@ void combate::iniciar_pelea(sf::RenderWindow* window, Enemigo& e, PersonajePrinc
 		//window->draw(contorno_vida_enemigo);
 
 		window->display();
+		
 	}
 
 }

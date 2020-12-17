@@ -9,6 +9,7 @@
 #include "interfaz_combate.h"
 #include "npc.h"
 #include "Texto.h"
+#include"menu.h"
 
 //p(40,20,20,20) , e (30,10,20,20)
 gamePlay::gamePlay() {
@@ -93,9 +94,7 @@ void gamePlay::collisionNpc(PersonajePrincipal& p, npc& np, sf::RenderWindow* wi
 }
 
 void gamePlay::mostrarVentana(sf::RenderWindow* window, Enemigo& e, PersonajePrincipal& p, float posx, float posy)
-{
-	sf::Music _musicaFondo;
-	
+{	
 	
 	if (!_musicaFondo.openFromFile("musica\\pelea3.wav")) {
 		std::cout << "No se pudo cargar el sonido" << std::endl;
@@ -166,7 +165,8 @@ void gamePlay::mostrarVentana(sf::RenderWindow* window, Enemigo& e, PersonajePri
 
 void gamePlay::mapa2(sf::RenderWindow* window, Enemigo& e, PersonajePrincipal& p, float posx, float posy)
 {
-
+	
+	menu i;
 	dungeon d;
 	
 	sf::RectangleShape paso;
@@ -181,6 +181,17 @@ void gamePlay::mapa2(sf::RenderWindow* window, Enemigo& e, PersonajePrincipal& p
 	mapaPrincipal.setMap(550, 300);
 
 	p.setPlayer(posx, posy);
+
+	textura_ganaste = new sf::Texture();
+	textura_ganaste->loadFromFile("Graphics\\bictoria.png");
+
+	textura_perdiste = new sf::Texture();
+	textura_perdiste->loadFromFile("Graphics\\derota.png");
+
+	sprite_ganaste = new sf::Sprite(*textura_ganaste);
+	sprite_ganaste->setScale((float)window->getSize().x / sprite_ganaste->getTexture()->getSize().x, (float)window->getSize().y / sprite_ganaste->getTexture()->getSize().y);
+	sprite_perdiste = new sf::Sprite(*textura_perdiste);
+	sprite_perdiste->setScale((float)window->getSize().x / sprite_perdiste->getTexture()->getSize().x, (float)window->getSize().y / sprite_perdiste->getTexture()->getSize().y);
 
 	while (window->isOpen())
 	{
@@ -208,6 +219,31 @@ void gamePlay::mapa2(sf::RenderWindow* window, Enemigo& e, PersonajePrincipal& p
 		window->draw(d.setCollisionDg());		
 		window->draw(p.setCollisionPj());
 		window->draw(p.getPlayer());
+
+		if (p.get_vida() <= 0) {
+			if (!(sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))) {
+				window->draw(*sprite_perdiste);
+			}
+			else {
+				p.set_vida(50);
+				e.set_vida(50);
+				_musicaFondo.stop();
+				window->close();
+				i.mostrar_menu(e, p);
+			}
+		}
+		else if (e.get_vida() <= 0) {
+			if (!(sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))) {
+				window->draw(*sprite_ganaste);
+			}
+			else {
+				p.set_vida(50);
+				e.set_vida(50);
+				_musicaFondo.stop();
+				window->close();
+				i.mostrar_menu(e, p);
+			}
+		}
 		//window->draw(np.getNpc());
 		//window->draw(np.setCollisionNpc(20, 400));
 		//collisionNpc(p, np, window);
@@ -250,6 +286,7 @@ void gamePlay::collisionDg(dungeon d, PersonajePrincipal& p, sf::RenderWindow* w
 			break;
 		}
 	}
+
 }
 
 void gamePlay::collisionRio(PersonajePrincipal& p) {
