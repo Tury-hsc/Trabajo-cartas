@@ -151,7 +151,7 @@ void gamePlay::mostrarVentana(sf::RenderWindow* window, Enemigo& e, PersonajePri
 		collisionBosque(p, paso, window, e);
 		p.moverPj(frame, x, y);
 		window->draw(ciudad.getMap());
-		window->draw(paso);	
+		//window->draw(paso);	
 		window->draw(p.setCollisionPj());
 		window->draw(p.getPlayer());
 		window->draw(np.getNpc());
@@ -214,7 +214,7 @@ void gamePlay::mapa2(sf::RenderWindow* window, Enemigo& e, PersonajePrincipal& p
 		p.moverPj(frame, x, y);
 		//std::cout << a << endl;
 		window->draw(mapaPrincipal.getMap());
-		window->draw(paso);
+		//window->draw(paso);
 		window->draw(d.getDungeon());
 		window->draw(d.setCollisionDg());		
 		window->draw(p.setCollisionPj());
