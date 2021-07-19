@@ -1,2 +1,46 @@
-﻿  gamePlay.cpp
-  LAB 2 Juego TP.vcxproj -> C:\Users\nahuel\Desktop\Trabajo-cartas\x64\Debug\LAB 2 Juego TP.exe
+﻿  aniomaciones.cpp
+C:\Users\Emi\Documents\GitHub\Trabajo-cartas\aniomaciones.cpp(20,42): warning C4244: 'argumento': conversión de 'T' a 'float'; posible pérdida de datos
+          with
+          [
+              T=unsigned int
+          ]
+C:\Users\Emi\Documents\GitHub\Trabajo-cartas\aniomaciones.cpp(20,31): warning C4244: 'argumento': conversión de 'T' a 'float'; posible pérdida de datos
+          with
+          [
+              T=unsigned int
+          ]
+  Carta.cpp
+  dungeon.cpp
+  Enemigo.cpp
+C:\Users\Emi\Documents\GitHub\Trabajo-cartas\Enemigo.cpp(19,12): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
+  Estadisticas.cpp
+  gamePlay.cpp
+  interfaz_combate_.cpp
+  LAB 2 Juego TP.cpp
+  mapa.cpp
+C:\Users\Emi\Documents\GitHub\Trabajo-cartas\mapa.cpp(17,28): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\Emi\Documents\GitHub\Trabajo-cartas\mapa.cpp(17,25): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+  Mazo.cpp
+C:\Users\Emi\Documents\GitHub\Trabajo-cartas\Mazo.cpp(67,15): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
+C:\Users\Emi\Documents\GitHub\Trabajo-cartas\Mazo.cpp(73,26): warning C4267: '=': conversión de 'size_t' a 'int'; posible pérdida de datos
+C:\Users\Emi\Documents\GitHub\Trabajo-cartas\Mazo.cpp(99,15): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
+  menu.cpp
+  npc.cpp
+C:\Users\Emi\Documents\GitHub\Trabajo-cartas\npc.cpp(37,25): warning C4244: 'argumento': conversión de 'float' a 'unsigned int'; posible pérdida de datos
+C:\Users\Emi\Documents\GitHub\Trabajo-cartas\npc.cpp(44,31): warning C4244: 'argumento': conversión de 'float' a 'unsigned int'; posible pérdida de datos
+  PersonajePrincipal.cpp
+C:\Users\Emi\Documents\GitHub\Trabajo-cartas\PersonajePrincipal.cpp(31,43): warning C4244: 'argumento': conversión de 'T' a 'float'; posible pérdida de datos
+          with
+          [
+              T=unsigned int
+          ]
+C:\Users\Emi\Documents\GitHub\Trabajo-cartas\PersonajePrincipal.cpp(31,32): warning C4244: 'argumento': conversión de 'T' a 'float'; posible pérdida de datos
+          with
+          [
+              T=unsigned int
+          ]
+  Texto.cpp
+  turno.cpp
+  Generando código...
+C:\Users\Emi\Documents\GitHub\Trabajo-cartas\Texto.cpp(44): warning C4715: 'Texto::obtenerTexto': no todas las rutas de acceso de control devuelven un valor
+  LAB 2 Juego TP.vcxproj -> C:\Users\Emi\Documents\GitHub\Trabajo-cartas\x64\Debug\LAB 2 Juego TP.exe

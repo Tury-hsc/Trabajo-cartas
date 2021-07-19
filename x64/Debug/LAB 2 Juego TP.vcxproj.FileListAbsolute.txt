@@ -1,5 +1,4 @@
 C:\Users\Emi\Documents\GitHub\Trabajo-cartas\x64\Debug\LAB 2 Juego TP.exe
-C:\Users\Emi\Documents\GitHub\Trabajo-cartas\x64\Debug\LAB 2 Juego TP.pdb
 C:\Users\turyh\OneDrive\Escritorio\UTN juego de cartas\Trabajo-cartas\x64\Debug\LAB 2 Juego TP.exe
 C:\Users\turyh\OneDrive\Escritorio\UTN juego de cartas\Trabajo-cartas\x64\Debug\LAB 2 Juego TP.pdb
 C:\Users\nahuel\Desktop\Trabajo-cartas\x64\Debug\LAB 2 Juego TP.exe
